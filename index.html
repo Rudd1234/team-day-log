@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Team Day Log</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="top">
+        <div>
+          <p class="eyebrow">สำหรับทีมเล็ก</p>
+          <h1>Team Day Log</h1>
+        </div>
+        <div class="view-controls">
+          <label class="filter">
+            <span>ดูเป็นคน</span>
+            <select id="person-filter"></select>
+          </label>
+          <button type="button" id="overview-button">ภาพรวมทุกคน</button>
+        </div>
+      </header>
+
+      <main class="panel calendar-panel">
+        <div class="month-bar">
+          <button type="button" id="prev-month" aria-label="เดือนก่อน">←</button>
+          <h2 id="month-label"></h2>
+          <button type="button" id="next-month" aria-label="เดือนถัดไป">→</button>
+        </div>
+        <div class="weekdays" aria-hidden="true">
+          <span>อา</span><span>จ</span><span>อ</span><span>พ</span><span>พฤ</span><span>ศ</span><span>ส</span>
+        </div>
+        <p class="hint">กดวันที่ต้องการ แล้วเลือกชื่อและสถานะ ข้อมูลจะแชร์กับทุกคนที่เปิดปฏิทินนี้</p>
+        <p class="legend" aria-hidden="true">
+          <span class="chip work">ทำงาน</span>
+          <span class="chip off">หยุด</span>
+          <span class="chip ot">ทำ OT</span>
+        </p>
+        <div id="calendar" class="calendar"></div>
+        <p id="form-message" class="message" hidden></p>
+        <section id="overlap-panel" class="overlap-panel" hidden>
+          <h2>วันหยุดทับกันเดือนนี้</h2>
+          <ul id="overlap-list"></ul>
+        </section>
+        <ul id="day-list" class="day-list"></ul>
+      </main>
+
+      <section class="panel member-panel">
+        <h2>คนในทีม</h2>
+        <form id="member-form" class="inline-form">
+          <input id="member-name" type="text" maxlength="40" placeholder="ชื่อเพื่อน" required />
+          <button type="submit">เพิ่มชื่อ</button>
+        </form>
+        <ul id="member-list" class="member-list"></ul>
+      </section>
+    </div>
+
+    <div id="day-sheet" class="sheet" hidden>
+      <button type="button" class="sheet-backdrop" id="day-sheet-backdrop" aria-label="ปิด"></button>
+      <div class="sheet-card" role="dialog" aria-labelledby="day-sheet-title">
+        <p id="day-sheet-title"></p>
+        <label>
+          คน
+          <select id="day-sheet-person"></select>
+        </label>
+        <button type="button" id="day-sheet-work">วันทำงาน</button>
+        <button type="button" id="day-sheet-off">วันหยุด</button>
+        <button type="button" id="day-sheet-ot" class="ot-button">ทำ OT</button>
+        <button type="button" id="day-sheet-delete" class="danger">ลบ</button>
+        <button type="button" id="day-sheet-cancel" class="sheet-cancel">ยกเลิก</button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
